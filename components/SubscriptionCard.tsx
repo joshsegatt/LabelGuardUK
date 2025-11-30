@@ -1,16 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { getCurrentPlanLimits, getLabelUsage } from '../utils/license';
+import { getCurrentPlanLimits, getLabelUsage, getCurrentLicense } from '../utils/license';
 
 export const SubscriptionCard: React.FC = () => {
     const limits = getCurrentPlanLimits();
+    const license = getCurrentLicense();
     const usage = getLabelUsage();
+    const planType = license?.plan || 'free';
 
-    const percentage = limits.maxLabels === Infinity
+    const maxLabels = limits.labelsPerMonth === 'unlimited' ? Infinity : limits.labelsPerMonth;
+
+    const percentage = maxLabels === Infinity
         ? 0
-        : Math.min(100, (usage / limits.maxLabels) * 100);
+        : Math.min(100, (usage / maxLabels) * 100);
 
-    const isPro = limits.type === 'pro' || limits.type === 'business';
+    const isPro = planType === 'pro';
 
     return (
         <div className="bg-[#1A1A1A] rounded-2xl shadow-2xl border border-white/5 p-6 relative overflow-hidden">
@@ -23,7 +27,7 @@ export const SubscriptionCard: React.FC = () => {
                         <h2 className="text-sm font-medium text-[#888] uppercase tracking-wider mb-1">Current Plan</h2>
                         <div className="flex items-center gap-2">
                             <span className={`text-2xl font-bold ${isPro ? 'text-white' : 'text-[#ECECEC]'}`}>
-                                {limits.type === 'free' ? 'Free Starter' : limits.type === 'pro' ? 'Pro License' : 'Business'}
+                                {planType === 'free' ? 'Free Starter' : 'Pro License'}
                             </span>
                             {isPro && <span className="px-2 py-0.5 bg-emerald-500/20 text-emerald-400 text-[10px] font-bold rounded uppercase border border-emerald-500/30">Active</span>}
                         </div>
@@ -38,13 +42,13 @@ export const SubscriptionCard: React.FC = () => {
                     <div className="flex justify-between text-xs mb-2 font-medium">
                         <span className="text-[#888]">Monthly Usage</span>
                         <span className="text-white">
-                            {usage} <span className="text-[#666]">/</span> {limits.maxLabels === Infinity ? '∞' : limits.maxLabels}
+                            {usage} <span className="text-[#666]">/</span> {maxLabels === Infinity ? '∞' : maxLabels}
                         </span>
                     </div>
                     <div className="w-full bg-[#0F0F0F] rounded-full h-2 overflow-hidden border border-[#333]">
                         <div
                             className={`h-2 rounded-full transition-all duration-1000 ease-out ${isPro ? 'bg-emerald-500' : 'bg-[#CC785C]'}`}
-                            style={{ width: `${limits.maxLabels === Infinity ? 2 : percentage}%` }}
+                            style={{ width: `${maxLabels === Infinity ? 2 : percentage}%` }}
                         ></div>
                     </div>
                 </div>
