@@ -1,0 +1,49 @@
+# Vercel Configuration
+# https: //vercel.com/docs/projects/project-configuration
+
+# Security Headers (Production Only)
+[
+    [headers
+    ]
+]
+  for = "/*"[headers.values
+]
+    # Content Security Policy
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.ipify.org; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
+    
+    # Prevent clickjacking
+    X-Frame-Options = "DENY"
+    
+    # Prevent MIME type sniffing
+    X-Content-Type-Options = "nosniff"
+    
+    # Enable XSS filter
+    X-XSS-Protection = "1; mode=block"
+    
+    # Referrer policy
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    
+    # Permissions policy
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    
+    # Force HTTPS
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+
+# Redirect HTTP to HTTPS
+[
+    [redirects
+    ]
+]
+  from = "http://labelguard.uk/*"
+  to = "https://labelguard.uk/:splat"
+  status = 301
+  force = true
+
+[
+    [redirects
+    ]
+]
+  from = "http://www.labelguard.uk/*"
+  to = "https://labelguard.uk/:splat"
+  status = 301
+  force = true
