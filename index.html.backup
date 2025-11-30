@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LabelGuard UK - Premium Label Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* LUXURY HEADER */
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 2.5rem;
+            padding: 3rem 2rem;
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%);
+            backdrop-filter: blur(40px) saturate(180%);
+            border-radius: 28px;
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            box-shadow:
+                0 4px 6px rgba(0, 0, 0, 0.1),
+                0 8px 16px rgba(0, 0, 0, 0.15),
+                0 16px 32px rgba(0, 0, 0, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .logo-container {
+            display: inline-flex;
+            align-items: center;
+            gap: 1.25rem;
+            margin-bottom: 0.75rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow:
+                0 4px 12px rgba(59, 130, 246, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+            position: relative;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 50%, #c7d2fe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.03em;
+            margin: 0;
+            line-height: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            font-size: 0.875rem;
+            opacity: 0.75;
+            font-weight: 600;
+            margin-top: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.8);
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+        }
+
+        .subtitle::before,
+        .subtitle::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+        }
+
+        .subtitle::before {
+            right: calc(100% + 1rem);
+        }
+
+        .subtitle::after {
+            left: calc(100% + 1rem);
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        /* ULTRA PREMIUM DARK CARDS */
+        .card {
+            background: linear-gradient(145deg,
+                    rgba(30, 41, 59, 0.95) 0%,
+                    rgba(15, 23, 42, 0.98) 50%,
+                    rgba(15, 23, 42, 1) 100%);
+            backdrop-filter: blur(40px) saturate(180%);
+            border-radius: 24px;
+            box-shadow:
+                0 1px 1px rgba(0, 0, 0, 0.3),
+                0 2px 2px rgba(0, 0, 0, 0.3),
+                0 4px 4px rgba(0, 0, 0, 0.3),
+                0 8px 8px rgba(0, 0, 0, 0.3),
+                0 16px 16px rgba(0, 0, 0, 0.3),
+                0 32px 32px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(148, 163, 184, 0.1) inset,
+                0 0 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 0%,
+                    rgba(59, 130, 246, 0.05) 0%,
+                    transparent 60%);
+            pointer-events: none;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow:
+                0 2px 2px rgba(0, 0, 0, 0.35),
+                0 4px 4px rgba(0, 0, 0, 0.35),
+                0 8px 8px rgba(0, 0, 0, 0.35),
+                0 16px 16px rgba(0, 0, 0, 0.35),
+                0 32px 32px rgba(0, 0, 0, 0.35),
+                0 64px 64px rgba(0, 0, 0, 0.35),
+                0 0 0 1px rgba(148, 163, 184, 0.2) inset,
+                0 0 80px rgba(59, 130, 246, 0.15);
+            border-color: rgba(148, 163, 184, 0.25);
+        }
+
+        .card-header {
+            padding: 1.75rem 2rem;
+            background: linear-gradient(135deg,
+                    rgba(59, 130, 246, 0.15) 0%,
+                    rgba(99, 102, 241, 0.12) 50%,
+                    rgba(79, 70, 229, 0.1) 100%);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg,
+                    transparent 0%,
+                    rgba(59, 130, 246, 0.5) 50%,
+                    transparent 100%);
+        }
+
+        .card-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg,
+                    transparent 0%,
+                    rgba(0, 0, 0, 0.3) 50%,
+                    transparent 100%);
+        }
+
+        .card-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.95);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-body {
+            padding: 2rem;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .card-body::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .card-body::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 3px;
+        }
+
+        .card-body::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            border-radius: 3px;
+        }
+
+        /* LUXURY REFINED FORMS */
+        .form-group {
+            margin-bottom: 1.75rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            position: relative;
+            padding-left: 0.5rem;
+        }
+
+        .form-group label::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2px;
+            height: 12px;
+            background: linear-gradient(180deg, #3b82f6 0%, #6366f1 100%);
+            border-radius: 2px;
+            box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border: 2px solid rgba(148, 163, 184, 0.15);
+            border-radius: 14px;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            background: rgba(15, 23, 42, 0.5);
+            color: rgba(255, 255, 255, 0.95);
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .saved-item {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 1rem;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px solid rgba(148, 163, 184, 0.2);
+            transition: all 0.2s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .saved-item:hover {
+            border-color: #3b82f6;
+            background: rgba(15, 23, 42, 0.8);
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .saved-info strong {
+            display: block;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 700;
+        }
+
+        .saved-info span {
+            font-size: 0.75rem;
+            color: rgba(148, 163, 184, 0.8);
+        }
+
+        .icon-btn {
+            padding: 0.5rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .btn-load {
+            background: rgba(224, 231, 255, 0.2);
+            margin-right: 0.5rem;
+        }
+
+        .btn-load:hover {
+            background: rgba(199, 210, 254, 0.3);
+            transform: scale(1.1);
+        }
+
+        .btn-delete {
+            background: rgba(254, 226, 226, 0.2);
+        }
+
+        .btn-delete:hover {
+            background: rgba(254, 202, 202, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* Print Copies Input */
+        .print-settings {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-end;
+            margin-bottom: 1rem;
+        }
+
+        .print-settings input {
+            width: 100px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        /* Print Layout */
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body * {
+                visibility: hidden;
+            }
+
+            #printContainer,
+            #printContainer * {
+                visibility: visible;
+            }
+
+            #printContainer {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 210mm;
+                height: 297mm;
+                display: grid;
+                grid-template-columns: repeat(2, 100mm);
+                grid-auto-rows: 50mm;
+                gap: 5mm;
+                padding: 10mm 5mm;
+                justify-content: center;
+                align-content: start;
+                background: white;
+            }
+
+            .print-label {
+                width: 100mm;
+                height: 50mm;
+                position: relative;
+                page-break-inside: avoid;
+                border: 1px dashed #999;
+                padding: 0;
+                margin: 0;
+            }
+
+            .print-label::before {
+                content: '✂';
+                position: absolute;
+                top: -3mm;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 8pt;
+                color: #999;
+            }
+
+            .label-content {
+                width: 100%;
+                height: 100%;
+                padding: 4mm;
+                font-family: Arial, sans-serif;
+                font-size: 9pt;
+                color: black;
+                background: white;
+                border: 1px solid #000;
+                box-sizing: border-box;
+            }
+
+            .label-content h3 {
+                font-size: 11pt;
+                font-weight: bold;
+                margin-bottom: 2mm;
+                text-transform: uppercase;
+            }
+
+            .label-content .ingredients {
+                font-size: 8pt;
+                line-height: 1.3;
+                margin-bottom: 2mm;
+            }
+
+            .label-content .allergens {
+                font-size: 7pt;
+                font-weight: bold;
+                margin-bottom: 2mm;
+            }
+
+            .label-content .footer {
+                position: absolute;
+                bottom: 4mm;
+                left: 4mm;
+                right: 4mm;
+                display: flex;
+                justify-content: space-between;
+                font-size: 8pt;
+                font-weight: bold;
+            }
+
+            .allergen-highlight {
+                font-weight: bold;
+                font-style: italic;
+                background: #fef3c7;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1280px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .card:nth-child(3) {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card:nth-child(3) {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <div class="header">
+            <div class="logo-container">
+                <div class="logo-icon">🛡️</div>
+                <h1>LabelGuard UK</h1>
+            </div>
+            <div class="subtitle">Natasha's Law Compliant Generator</div>
+        </div>
+
+        <div class="dashboard-grid">
+            <!-- Column 1: Product Details -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">📝 Product Details</div>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="productName">Product Name</label>
+                        <input type="text" id="productName" placeholder="e.g. Belgian Chocolate Brownie">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ingredients">Ingredients List</label>
+                        <textarea id="ingredients"
+                            placeholder="Full ingredients list... (Allergens will be auto-bolded)"></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="dateType">Date Label</label>
+                            <select id="dateType">
+                                <option value="best-before">Best Before</option>
+                                <option value="use-by">Use By</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Date</label>
+                            <input type="date" id="date">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price">Price (Optional)</label>
+                        <input type="text" id="price" placeholder="£0.00">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 2: Allergens -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">⚠️ Allergens (14)</div>
+                </div>
+                <div class="card-body">
+                    <div class="allergen-list" id="allergenGrid">
+                        <!-- Generated by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 3: Preview & Actions -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">👁️ Preview & Save</div>
+                </div>
+                <div class="card-body">
+                    <div class="preview-wrapper">
+                        <div class="label-preview" id="labelPreview">
+                            <h3 id="previewProductName">Product Name</h3>
+                            <div class="ingredients-section">
+                                <strong>Ingredients:</strong>
+                                <div id="previewIngredients" style="margin-top: 2px;">List your ingredients...</div>
+                            </div>
+                            <div id="previewAllergens" style="margin-top: 4px; font-size: 7pt; font-weight: bold;">
+                            </div>
+                            <div class="date-price" style="position: absolute; bottom: 8px; left: 8px; right: 8px;">
+                                <span id="previewDate">Best Before: --/--/----</span>
+                                <span id="previewPrice"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="print-settings">
+                        <div class="form-group" style="margin-bottom: 0; flex: 0 0 auto;">
+                            <label for="printCopies">Copies</label>
+                            <input type="number" id="printCopies" value="10" min="1" max="50">
+                        </div>
+                        <button class="btn btn-primary" onclick="printLabel()" style="flex: 1;">🖨️ Print
+                            Labels</button>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-secondary" onclick="saveLabel()">💾 Save</button>
+                        <button class="btn btn-secondary" onclick="clearForm()">🔄 Clear</button>
+                    </div>
+
+                    <div style="margin-top: 1.5rem;">
+                        <h4
+                            style="font-size: 0.9rem; font-weight: 700; color: rgba(148, 163, 184, 0.8); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                            Recent Labels</h4>
+                        <div id="savedLabelsList" class="saved-list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="printContainer"></div>
+
+    <script>
+        const allergens = [
+            'Celery', 'Cereals containing gluten', 'Crustaceans', 'Eggs', 'Fish',
+            'Lupin', 'Milk', 'Molluscs', 'Mustard', 'Nuts',
+            'Peanuts', 'Sesame seeds', 'Soya', 'Sulphur dioxide'
+        ];
+
+        const allergenGrid = document.getElementById('allergenGrid');
+        allergens.forEach(allergen => {
+            const btn = document.createElement('button');
+            btn.className = 'allergen-chip';
+            btn.onclick = () => toggleAllergen(btn, allergen);
+            btn.innerHTML = `
+                <span>${allergen}</span>
+                <div class="check-icon">✓</div>
+            `;
+            btn.dataset.allergen = allergen;
+            btn.dataset.active = 'false';
+            allergenGrid.appendChild(btn);
+        });
+
+        let selectedAllergens = new Set();
+
+        function toggleAllergen(btn, allergen) {
+            const isActive = btn.dataset.active === 'true';
+            btn.dataset.active = !isActive;
+
+            if (!isActive) {
+                btn.classList.add('active');
+                selectedAllergens.add(allergen);
+            } else {
+                btn.classList.remove('active');
+                selectedAllergens.delete(allergen);
+            }
+            updatePreview();
+        }
+
+        function updatePreview() {
+            const productName = document.getElementById('productName').value || 'Product Name';
+            const ingredients = document.getElementById('ingredients').value || 'List your ingredients...';
+            const dateType = document.getElementById('dateType').value;
+            const date = document.getElementById('date').value;
+            const price = document.getElementById('price').value;
+
+            document.getElementById('previewProductName').textContent = productName;
+
+            let highlightedHtml = ingredients;
+            selectedAllergens.forEach(allergen => {
+                const regex = new RegExp(`\\b(${allergen})\\b`, 'gi');
+                highlightedHtml = highlightedHtml.replace(regex, '<span class="allergen-highlight">$1</span>');
+            });
+            document.getElementById('previewIngredients').innerHTML = highlightedHtml;
+
+            const dateLabel = dateType === 'best-before' ? 'Best Before' : 'Use By';
+            const formattedDate = date ? formatDate(date) : '--/--/----';
+            document.getElementById('previewDate').textContent = `${dateLabel}: ${formattedDate}`;
+            document.getElementById('previewPrice').textContent = price ? `£${price}` : '';
+
+            const warningEl = document.getElementById('previewAllergens');
+            if (selectedAllergens.size > 0) {
+                warningEl.innerHTML = `<strong>ALLERGENS:</strong> ${Array.from(selectedAllergens).join(', ').toUpperCase()}`;
+            } else {
+                warningEl.innerHTML = '';
+            }
+        }
+
+        function formatDate(dateString) {
+            const [year, month, day] = dateString.split('-');
+            return `${day}/${month}/${year}`;
+        }
+
+        function printLabel() {
+            const container = document.getElementById('printContainer');
+            const copies = parseInt(document.getElementById('printCopies').value) || 10;
+            const productName = document.getElementById('previewProductName').textContent;
+            const ingredientsHtml = document.getElementById('previewIngredients').innerHTML;
+            const dateText = document.getElementById('previewDate').textContent;
+            const priceText = document.getElementById('previewPrice').textContent;
+            const allergenText = document.getElementById('previewAllergens').textContent;
+
+            container.innerHTML = '';
+
+            for (let i = 0; i < copies; i++) {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'print-label';
+                wrapper.innerHTML = `
+                    <div class="label-content">
+                        <h3>${productName}</h3>
+                        <div class="ingredients">
+                            <strong>INGREDIENTS:</strong><br>
+                            ${ingredientsHtml}
+                        </div>
+                        ${allergenText ? `<div class="allergens">${allergenText}</div>` : ''}
+                        <div class="footer">
+                            <span>${dateText}</span>
+                            <span>${priceText}</span>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(wrapper);
+            }
+
+            window.print();
+        }
+
+        function saveLabel() {
+            const data = {
+                id: Date.now(),
+                productName: document.getElementById('productName').value,
+                ingredients: document.getElementById('ingredients').value,
+                dateType: document.getElementById('dateType').value,
+                date: document.getElementById('date').value,
+                price: document.getElementById('price').value,
+                allergens: Array.from(selectedAllergens),
+                created: new Date().toISOString()
+            };
+
+            if (!data.productName) return alert('Please enter a product name');
+
+            let labels = JSON.parse(localStorage.getItem('lg_labels') || '[]');
+            labels.unshift(data);
+            if (labels.length > 20) labels.pop();
+            localStorage.setItem('lg_labels', JSON.stringify(labels));
+            renderSavedList();
+        }
+
+        function renderSavedList() {
+            const list = document.getElementById('savedLabelsList');
+            const labels = JSON.parse(localStorage.getItem('lg_labels') || '[]');
+
+            if (labels.length === 0) {
+                list.innerHTML = `<div style="text-align: center; padding: 2rem; color: rgba(148, 163, 184, 0.6); font-size: 0.9rem;">No saved labels yet</div>`;
+                return;
+            }
+
+            list.innerHTML = labels.map(l => `
+                <div class="saved-item">
+                    <div class="saved-info">
+                        <strong>${l.productName}</strong>
+                        <span>${new Date(l.created).toLocaleDateString('en-GB')}</span>
+                    </div>
+                    <div style="display: flex; gap: 0.25rem;">
+                        <button onclick="loadLabel(${l.id})" class="icon-btn btn-load" title="Load">📂</button>
+                        <button onclick="deleteLabel(${l.id})" class="icon-btn btn-delete" title="Delete">🗑️</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function loadLabel(id) {
+            const labels = JSON.parse(localStorage.getItem('lg_labels') || '[]');
+            const l = labels.find(x => x.id === id);
+            if (!l) return;
+
+            document.getElementById('productName').value = l.productName;
+            document.getElementById('ingredients').value = l.ingredients;
+            document.getElementById('dateType').value = l.dateType;
+            document.getElementById('date').value = l.date;
+            document.getElementById('price').value = l.price;
+
+            selectedAllergens.clear();
+            document.querySelectorAll('.allergen-chip').forEach(btn => {
+                const alg = btn.dataset.allergen;
+                if (l.allergens.includes(alg)) {
+                    btn.classList.add('active');
+                    btn.dataset.active = 'true';
+                    selectedAllergens.add(alg);
+                } else {
+                    btn.classList.remove('active');
+                    btn.dataset.active = 'false';
+                }
+            });
+
+            updatePreview();
+        }
+
+        function deleteLabel(id) {
+            if (!confirm('Delete this label?')) return;
+            let labels = JSON.parse(localStorage.getItem('lg_labels') || '[]');
+            labels = labels.filter(l => l.id !== id);
+            localStorage.setItem('lg_labels', JSON.stringify(labels));
+            renderSavedList();
+        }
+
+        function clearForm() {
+            document.getElementById('productName').value = '';
+            document.getElementById('ingredients').value = '';
+            document.getElementById('date').value = '';
+            document.getElementById('price').value = '';
+
+            selectedAllergens.clear();
+            document.querySelectorAll('.allergen-chip').forEach(btn => {
+                btn.classList.remove('active');
+                btn.dataset.active = 'false';
+            });
+
+            updatePreview();
+        }
+
+        ['productName', 'ingredients', 'dateType', 'date', 'price'].forEach(id => {
+            document.getElementById(id).addEventListener('input', updatePreview);
+        });
+
+        renderSavedList();
+        updatePreview();
+    </script>
+</body>
+
+</html>
