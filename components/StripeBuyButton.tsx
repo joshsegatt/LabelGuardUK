@@ -5,7 +5,8 @@ interface StripeBuyButtonProps {
 }
 
 export const StripeBuyButton: React.FC<StripeBuyButtonProps> = ({ onClose }) => {
-    const STRIPE_CHECKOUT_URL = 'https://buy.stripe.com/dRm6oG2Qt74g0Tcfg10VO00';
+    // Use Environment Variable if available, otherwise fallback to the hardcoded link
+    const STRIPE_CHECKOUT_URL = import.meta.env.VITE_STRIPE_CHECKOUT_URL || 'https://buy.stripe.com/dRm6oG2Qt74g0Tcfg10VO00';
 
     return (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
