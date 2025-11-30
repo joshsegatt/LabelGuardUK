@@ -146,25 +146,25 @@ export const AppPage: React.FC = () => {
         <>
             {/* Navigation - Only visible on screen, not print */}
             <nav className="print:hidden border-b border-[#3A3A3A] bg-[#1F1F1F] sticky top-0 z-50 shadow-xl shadow-black/20">
-                <div className="w-full px-6 md:px-10 py-4">
+                <div className="w-full px-4 md:px-10 py-3 md:py-4">
                     <div className="flex justify-between items-center">
                         <Link to="/" className="group">
-                            <span className="text-xl font-bold text-[#ECECEC] tracking-tight hover:text-white transition-colors">
+                            <span className="text-lg md:text-xl font-bold text-[#ECECEC] tracking-tight hover:text-white transition-colors">
                                 LabelGuard UK
                             </span>
                         </Link>
-                        <div className="flex items-center gap-6">
-                            <Link to="/" className="text-[#A8A8A8] hover:text-white transition-colors font-medium text-sm">
+                        <div className="flex items-center gap-4 md:gap-6">
+                            <Link to="/" className="hidden md:block text-[#A8A8A8] hover:text-white transition-colors font-medium text-sm">
                                 Home
                             </Link>
-                            <Link to="/pricing" className="text-[#A8A8A8] hover:text-white transition-colors font-medium text-sm">
+                            <Link to="/pricing" className="hidden md:block text-[#A8A8A8] hover:text-white transition-colors font-medium text-sm">
                                 Pricing
                             </Link>
                             {limits.hasWatermark && (
                                 <Link
                                     to="/pricing"
-                                    className="px-4 py-2 bg-[#CC785C] text-white font-bold text-sm rounded-lg
-                                             hover:bg-[#B8694D] shadow-lg shadow-[#CC785C]/20 transition-all duration-200"
+                                    className="px-3 py-1.5 md:px-4 md:py-2 bg-[#CC785C] text-white font-bold text-xs md:text-sm rounded-lg
+                                             hover:bg-[#B8694D] shadow-lg shadow-[#CC785C]/20 transition-all duration-200 whitespace-nowrap"
                                 >
                                     Upgrade to Pro
                                 </Link>
@@ -175,14 +175,14 @@ export const AppPage: React.FC = () => {
             </nav>
 
             {/* Main App */}
-            <div className="min-h-screen bg-[#1F1F1F] text-[#ECECEC] p-4 sm:p-6 lg:p-12 print:p-0 relative">
+            <div className="min-h-screen bg-[#1F1F1F] text-[#ECECEC] p-2 md:p-6 lg:p-12 print:p-0 relative">
                 {/* Subtle Grid Background */}
                 <div className="absolute inset-0 h-[600px] bg-[linear-gradient(rgba(236,236,236,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(236,236,236,0.03)_1px,transparent_1px)] bg-[size:80px_80px] pointer-events-none"></div>
                 <div className="absolute inset-0 h-[600px] bg-gradient-to-b from-transparent to-[#1F1F1F] pointer-events-none"></div>
 
-                <div className="w-full px-6 lg:px-8 relative z-10">
-                    <main className="mt-6 print:mt-0">
-                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 print:block">
+                <div className="w-full px-2 md:px-6 lg:px-8 relative z-10">
+                    <main className="mt-4 md:mt-6 print:mt-0">
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 print:block">
 
                             {/* Left Column - Meta & History (3 cols) */}
                             <div className="lg:col-span-3 flex flex-col gap-6 print:hidden">
