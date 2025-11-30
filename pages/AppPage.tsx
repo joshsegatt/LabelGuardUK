@@ -5,7 +5,7 @@ import { AllergensCard } from '../components/AllergensCard';
 import { PreviewSaveCard } from '../components/PreviewSaveCard';
 import { SavedLabelsCard } from '../components/SavedLabelsCard';
 import { SubscriptionCard } from '../components/SubscriptionCard';
-import { PaymentModal } from '../components/PaymentModal';
+import { StripeBuyButton } from '../components/StripeBuyButton';
 import { Footer } from '../components/Footer';
 import { LabelData } from '../types';
 import { LabelTemplate, getTemplateStyles } from '../components/TemplateSelector';
@@ -221,15 +221,10 @@ export const AppPage: React.FC = () => {
                 </div>
             </div>
 
-            {/* Payment Modal */}
+            {/* Stripe Payment Modal */}
             {showPaymentModal && (
-                <PaymentModal
-                    selectedPlan={selectedPlan}
+                <StripeBuyButton
                     onClose={() => setShowPaymentModal(false)}
-                    onSuccess={() => {
-                        setShowPaymentModal(false);
-                        window.location.reload();
-                    }}
                 />
             )}
 
