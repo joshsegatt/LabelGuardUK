@@ -304,19 +304,20 @@ export const AppPage: React.FC = () => {
                                         </div>
                                     )}
 
-                                    <div className="flex justify-between items-end">
-                                        <div className="text-sm font-bold">
+                                    <div className="flex justify-between items-end gap-2">
+                                        <div className="text-sm font-bold whitespace-nowrap">
                                             USE BY: {label.useByDate || 'DD/MM/YYYY'}
                                         </div>
                                         {label.barcode && (
-                                            <div className="h-8 overflow-hidden">
+                                            <div className="overflow-hidden flex-shrink-0 opacity-90 mix-blend-multiply">
                                                 <Barcode
                                                     value={label.barcode}
                                                     width={1}
-                                                    height={25}
-                                                    fontSize={10}
+                                                    height={22}
+                                                    fontSize={8}
                                                     margin={0}
                                                     displayValue={false}
+                                                    background="transparent"
                                                 />
                                             </div>
                                         )}
