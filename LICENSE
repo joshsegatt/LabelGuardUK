@@ -1,0 +1,85 @@
+PROPRIETARY SOFTWARE LICENSE
+
+Copyright © 2024 LabelGuard UK. All Rights Reserved.
+
+NOTICE: This software and associated documentation files (the "Software") are the 
+proprietary and confidential property of LabelGuard UK.
+
+RESTRICTIONS
+
+You are NOT permitted to:
+
+1. Copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the 
+   Software, or permit persons to whom the Software is furnished to do so.
+
+2. Use the Software for any commercial purpose without explicit written permission 
+   from LabelGuard UK.
+
+3. Reverse engineer, decompile, or disassemble the Software.
+
+4. Remove or alter any proprietary notices, labels, or marks on the Software.
+
+5. Create derivative works based on the Software.
+
+6. Transfer, rent, lease, or lend the Software to any third party.
+
+PERMITTED USE
+
+You MAY:
+
+1. View the source code for educational and reference purposes only.
+
+2. Report bugs, security vulnerabilities, or suggest improvements to LabelGuard UK.
+
+3. Use the hosted service available at https://labelguard.uk in accordance with 
+   the Terms of Service.
+
+DISCLAIMER OF WARRANTY
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
+PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION 
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+LIMITATION OF LIABILITY
+
+IN NO EVENT SHALL LABELGUARD UK BE LIABLE FOR ANY SPECIAL, INCIDENTAL, INDIRECT, 
+OR CONSEQUENTIAL DAMAGES WHATSOEVER (INCLUDING, WITHOUT LIMITATION, DAMAGES FOR 
+LOSS OF BUSINESS PROFITS, BUSINESS INTERRUPTION, LOSS OF BUSINESS INFORMATION, OR 
+ANY OTHER PECUNIARY LOSS) ARISING OUT OF THE USE OF OR INABILITY TO USE THIS 
+SOFTWARE, EVEN IF LABELGUARD UK HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+GOVERNING LAW
+
+This license shall be governed by and construed in accordance with the laws of 
+England and Wales, without regard to its conflict of law provisions.
+
+CONTACT INFORMATION
+
+For licensing inquiries or permissions:
+Email: legal@labelguard.uk
+Website: https://labelguard.uk
+
+THIRD-PARTY COMPONENTS
+
+This Software may include third-party open-source components, each subject to its 
+own license terms. See the respective package documentation in node_modules/ for 
+details.
+
+TERMINATION
+
+This license is effective until terminated. Your rights under this license will 
+terminate automatically without notice if you fail to comply with any term(s) of 
+this license.
+
+ENTIRE AGREEMENT
+
+This license constitutes the entire agreement between you and LabelGuard UK 
+regarding the Software and supersedes all prior agreements and understandings.
+
+---
+
+Last Updated: November 30, 2024
+Version: 1.0
