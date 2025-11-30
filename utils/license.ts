@@ -84,6 +84,19 @@ export function createLicense(plan: PlanType, email: string): License {
 }
 
 /**
+ * Activate Pro Plan (called after successful payment)
+ */
+export function activateProPlan(): void {
+    // In a real backend app, we would validate the Stripe session_id here.
+    // For MVP, we trust the redirect and create a local license.
+    const license = createLicense('pro', 'user@local');
+    saveLicense(license);
+
+    // Clear any usage limits if needed, or let them reset naturally
+    console.log('🌟 Pro Plan Activated:', license.key);
+}
+
+/**
  * Validate a license key format
  */
 export function validateLicenseFormat(key: string): boolean {

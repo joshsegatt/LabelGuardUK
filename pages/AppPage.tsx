@@ -10,7 +10,7 @@ import { Footer } from '../components/Footer';
 import { LabelData } from '../types';
 import { LabelTemplate, getTemplateStyles } from '../components/TemplateSelector';
 import { ALLERGENS_LIST } from '../constants';
-import { canCreateLabel, incrementLabelUsage, getCurrentPlanLimits, PlanType } from '../utils/license';
+import { canCreateLabel, incrementLabelUsage, getCurrentPlanLimits, PlanType, activateProPlan } from '../utils/license';
 import { initializeExampleLabels } from '../utils/onboarding';
 import { registerFreeUser, updateLastActive } from '../utils/userRegistration';
 
@@ -22,6 +22,7 @@ export const AppPage: React.FC = () => {
     const [selectedAllergens, setSelectedAllergens] = useState<string[]>([]);
     const [savedLabels, setSavedLabels] = useState<LabelData[]>([]);
     const [showPaymentModal, setShowPaymentModal] = useState(false);
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
     const [selectedPlan, setSelectedPlan] = useState<PlanType>('pro');
     const [template, setTemplate] = useState<LabelTemplate>('classic');
 
@@ -35,6 +36,13 @@ export const AppPage: React.FC = () => {
         // Update last active timestamp
         updateLastActive();
 
+        // Check for successful payment redirect
+        if (searchParams.get('success') === 'true') {
+            activateProPlan();
+            setShowSuccessModal(true);
+            // Clean URL
+            setSearchParams({});
+        }
 
         const stored = localStorage.getItem('labelguard_labels');
         if (stored) {
@@ -54,7 +62,7 @@ export const AppPage: React.FC = () => {
             searchParams.delete('upgrade');
             setSearchParams(searchParams);
         }
-    }, []);
+    }, [searchParams, setSearchParams]);
 
     const currentLabel: LabelData = {
         id: Date.now().toString(),
@@ -228,6 +236,32 @@ export const AppPage: React.FC = () => {
                 />
             )}
 
+            {/* Success Modal */}
+            {showSuccessModal && (
+                <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+                    <div className="bg-[#2A2A2A] rounded-2xl max-w-md w-full p-8 relative border border-emerald-500/30 shadow-2xl text-center">
+                        <div className="w-20 h-20 bg-emerald-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg className="w-10 h-10 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                        <h2 className="text-3xl font-bold text-white mb-4">Welcome to Pro! 🎉</h2>
+                        <p className="text-[#A8A8A8] mb-8">
+                            Your account has been successfully upgraded. You now have unlimited access to all premium features.
+                        </p>
+                        <button
+                            onClick={() => {
+                                setShowSuccessModal(false);
+                                window.location.reload(); // Reload to refresh limits
+                            }}
+                            className="w-full py-3 px-6 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl transition-colors"
+                        >
+                            Start Creating Labels
+                        </button>
+                    </div>
+                </div>
+            )}
+
             {/* Print Area (Hidden on Screen, Visible on Print) */}
             <div id="print-area" className="hidden print:grid print:grid-cols-2 print:gap-4 print:p-4 print:w-[210mm] print:h-[297mm] print:bg-white print:fixed print:top-0 print:left-0 print:z-[9999]">
                 {Array(10).fill(currentLabel).map((label, index) => {
@@ -240,38 +274,37 @@ export const AppPage: React.FC = () => {
                             <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-black"></div>
                             <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-black"></div>
 
-                            <div className={`h-full flex flex-col p-2 ${styles.containerClass} !shadow-none !transform-none`}>
-                                <div className="text-center border-b border-current pb-1 mb-1">
-                                    <h3 className={`text-base leading-none ${styles.titleClass}`}>
-                                        {label.productName || 'PRODUCT NAME'}
-                                    </h3>
+                            {/* Content */}
+                            <div className="h-full flex flex-col" style={{
+                                fontFamily: styles.fontFamily,
+                                backgroundColor: styles.backgroundColor,
+                                color: styles.textColor
+                            }}>
+                                <div className="text-center border-b-2 border-black pb-1 mb-1">
+                                    <h2 className="text-lg font-bold uppercase leading-tight">{label.productName || 'PRODUCT NAME'}</h2>
                                 </div>
 
-                                <div className="flex-grow mb-1 overflow-hidden">
-                                    <div className={`text-[9px] leading-tight mb-1 ${styles.ingredientsClass}`}>
-                                        <span className="font-bold">INGREDIENTS:</span>{' '}
-                                        {label.ingredients}
-                                    </div>
+                                <div className="flex-grow text-[10px] leading-tight overflow-hidden">
+                                    <p className="font-bold mb-0.5">INGREDIENTS:</p>
+                                    <p className="text-justify">{label.ingredients || 'Ingredients list...'}</p>
+                                </div>
 
+                                <div className="mt-1 pt-1 border-t border-black">
                                     {label.allergens && label.allergens.length > 0 && (
-                                        <div className={`text-[8px] font-bold mt-1 ${styles.allergensClass}`}>
-                                            CONTAINS: {label.allergens.join(', ')}
+                                        <div className="mb-1">
+                                            <p className="font-bold text-[10px] uppercase">
+                                                ALLERGENS: <span className="font-bold">{label.allergens.join(', ')}</span>
+                                            </p>
                                         </div>
                                     )}
-                                </div>
 
-                                <div className={`mt-auto border border-current flex text-[9px] ${styles.dateClass}`}>
-                                    <div className="flex-1 p-0.5 border-r border-current text-center">
-                                        <span className="block font-bold uppercase text-[7px]">Use By</span>
-                                        <span className="font-mono font-bold">{label.useByDate}</span>
-                                    </div>
-                                    <div className="flex-1 p-0.5 border-r border-current text-center">
-                                        <span className="block font-bold uppercase text-[7px]">Price</span>
-                                        <span className="font-mono font-bold">£0.00</span>
-                                    </div>
-                                    <div className="flex-[1.5] p-0.5 flex items-center justify-center bg-current text-white text-center">
-                                        {/* Using mix-blend-difference to ensure text is visible on black bar, or rely on template styles */}
-                                        <span className="font-bold uppercase text-[7px]">Keep Refrigerated</span>
+                                    <div className="flex justify-between items-end">
+                                        <div className="text-sm font-bold">
+                                            USE BY: {label.useByDate || 'DD/MM/YYYY'}
+                                        </div>
+                                        <div className="text-[8px]">
+                                            Keep Refrigerated
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -77,6 +77,9 @@ export function getTemplateStyles(template: LabelTemplate): {
     ingredientsClass: string;
     allergensClass: string;
     dateClass: string;
+    fontFamily?: string;
+    backgroundColor?: string;
+    textColor?: string;
 } {
     const baseStyles = {
         classic: {
@@ -84,35 +87,50 @@ export function getTemplateStyles(template: LabelTemplate): {
             titleClass: 'text-center font-bold uppercase border-b-2 border-black',
             ingredientsClass: 'text-sm',
             allergensClass: 'bg-yellow-100 border-l-4 border-orange-500 font-bold print:print-color-adjust-exact',
-            dateClass: 'text-center font-bold border-t border-gray-400'
+            dateClass: 'text-center font-bold border-t border-gray-400',
+            fontFamily: 'Arial, sans-serif',
+            backgroundColor: 'white',
+            textColor: 'black'
         },
         modern: {
             containerClass: 'bg-gradient-to-br from-white to-gray-50 border border-gray-300 shadow-lg print:bg-white print:print-color-adjust-exact',
             titleClass: 'text-center font-extrabold uppercase text-blue-600 border-b-2 border-blue-500 print:text-blue-600',
             ingredientsClass: 'text-sm text-gray-700',
             allergensClass: 'bg-blue-50 border-l-4 border-blue-500 font-semibold text-blue-900 print:bg-blue-50 print:print-color-adjust-exact',
-            dateClass: 'text-center font-bold text-gray-800 bg-gray-100 rounded print:bg-gray-100 print:print-color-adjust-exact'
+            dateClass: 'text-center font-bold text-gray-800 bg-gray-100 rounded print:bg-gray-100 print:print-color-adjust-exact',
+            fontFamily: 'Inter, sans-serif',
+            backgroundColor: '#f8fafc',
+            textColor: '#1e293b'
         },
         minimal: {
             containerClass: 'bg-white border border-gray-200 print:print-color-adjust-exact',
             titleClass: 'text-center font-light uppercase tracking-wider text-gray-900',
             ingredientsClass: 'text-xs text-gray-600 leading-relaxed',
             allergensClass: 'bg-gray-100 border-l-2 border-gray-400 font-medium text-gray-800 print:bg-gray-100 print:print-color-adjust-exact',
-            dateClass: 'text-center font-medium text-gray-700'
+            dateClass: 'text-center font-medium text-gray-700',
+            fontFamily: 'Helvetica Neue, sans-serif',
+            backgroundColor: 'white',
+            textColor: '#374151'
         },
         bold: {
             containerClass: 'bg-black text-white border-4 border-yellow-400 print:bg-black print:text-white print:print-color-adjust-exact',
             titleClass: 'text-center font-black uppercase text-yellow-400 text-xl print:text-yellow-400',
             ingredientsClass: 'text-sm text-white print:text-white',
             allergensClass: 'bg-yellow-400 text-black border-l-4 border-red-600 font-black print:bg-yellow-400 print:text-black print:print-color-adjust-exact',
-            dateClass: 'text-center font-black text-yellow-400 bg-gray-900 print:bg-gray-900 print:text-yellow-400 print:print-color-adjust-exact'
+            dateClass: 'text-center font-black text-yellow-400 bg-gray-900 print:bg-gray-900 print:text-yellow-400 print:print-color-adjust-exact',
+            fontFamily: 'Impact, sans-serif',
+            backgroundColor: 'black',
+            textColor: 'white'
         },
         elegant: {
             containerClass: 'bg-gradient-to-b from-amber-50 to-white border-2 border-amber-200 shadow-xl print:bg-amber-50 print:print-color-adjust-exact',
             titleClass: 'text-center font-serif font-bold uppercase text-amber-900 border-b-2 border-amber-300 print:text-amber-900',
             ingredientsClass: 'text-sm text-gray-700 font-serif',
             allergensClass: 'bg-amber-100 border-l-4 border-amber-600 font-semibold text-amber-900 print:bg-amber-100 print:print-color-adjust-exact',
-            dateClass: 'text-center font-serif font-bold text-amber-900 bg-amber-50 rounded print:bg-amber-50 print:print-color-adjust-exact'
+            dateClass: 'text-center font-serif font-bold text-amber-900 bg-amber-50 rounded print:bg-amber-50 print:print-color-adjust-exact',
+            fontFamily: 'Georgia, serif',
+            backgroundColor: '#fffbeb',
+            textColor: '#78350f'
         }
     };
 
