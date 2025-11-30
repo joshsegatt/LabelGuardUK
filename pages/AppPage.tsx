@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
+import Barcode from 'react-barcode';
 import { ProductDetailsCard } from '../components/ProductDetailsCard';
 import { AllergensCard } from '../components/AllergensCard';
 import { PreviewSaveCard } from '../components/PreviewSaveCard';
@@ -19,6 +20,7 @@ export const AppPage: React.FC = () => {
     const [productName, setProductName] = useState('');
     const [ingredients, setIngredients] = useState('');
     const [useByDate, setUseByDate] = useState('');
+    const [barcode, setBarcode] = useState('');
     const [selectedAllergens, setSelectedAllergens] = useState<string[]>([]);
     const [savedLabels, setSavedLabels] = useState<LabelData[]>([]);
     const [showPaymentModal, setShowPaymentModal] = useState(false);
@@ -70,6 +72,7 @@ export const AppPage: React.FC = () => {
         ingredients,
         allergens: selectedAllergens,
         useByDate,
+        barcode,
         template,
         createdAt: new Date().toISOString(),
     };
@@ -114,6 +117,7 @@ export const AppPage: React.FC = () => {
         setIngredients(label.ingredients);
         setSelectedAllergens(label.allergens);
         setUseByDate(label.useByDate);
+        setBarcode(label.barcode || '');
         if (label.template) setTemplate(label.template as LabelTemplate);
     }, []);
 
@@ -201,6 +205,8 @@ export const AppPage: React.FC = () => {
                                     setIngredients={setIngredients}
                                     useByDate={useByDate}
                                     setUseByDate={setUseByDate}
+                                    barcode={barcode}
+                                    setBarcode={setBarcode}
                                     showBarcode={limits.hasBarcodeGenerator}
                                 />
                                 <div className="flex-grow">
@@ -302,9 +308,18 @@ export const AppPage: React.FC = () => {
                                         <div className="text-sm font-bold">
                                             USE BY: {label.useByDate || 'DD/MM/YYYY'}
                                         </div>
-                                        <div className="text-[8px]">
-                                            Keep Refrigerated
-                                        </div>
+                                        {label.barcode && (
+                                            <div className="h-8 overflow-hidden">
+                                                <Barcode
+                                                    value={label.barcode}
+                                                    width={1}
+                                                    height={25}
+                                                    fontSize={10}
+                                                    margin={0}
+                                                    displayValue={false}
+                                                />
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </div>
