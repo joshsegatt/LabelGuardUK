@@ -50,11 +50,16 @@ export const PreviewSaveCard: React.FC<PreviewSaveCardProps> = ({
                 {/* Label Maior e Flutuante */}
                 <div
                     className={`
-                        relative w-[340px] min-h-[220px] bg-white text-black shadow-2xl
-                        transform transition-transform duration-300 ease-out
-                        group-hover:scale-[1.02] group-hover:-translate-y-1
+                        relative w-full max-w-[340px] min-h-[220px] bg-white text-black shadow-2xl 
+                        transform transition-all duration-500 hover:scale-[1.02] hover:rotate-1
+                        flex flex-col
                         ${styles.containerClass}
                     `}
+                    style={{
+                        fontFamily: styles.fontFamily,
+                        backgroundColor: styles.backgroundColor,
+                        color: styles.textColor
+                    }}
                 >
                     <div className="flex flex-col h-full p-5">
                         {/* Product Title */}
