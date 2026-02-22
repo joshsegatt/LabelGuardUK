@@ -116,10 +116,11 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ selectedPlan = 'pro'
                     <form onSubmit={handleCheckout} className="space-y-5">
                         {/* Email */}
                         <div className="group/input">
-                            <label className="block text-xs font-bold text-[#666] mb-1.5 uppercase tracking-widest group-focus-within/input:text-[#CC785C] transition-colors">
+                            <label htmlFor="checkout-email" className="block text-xs font-bold text-[#666] mb-1.5 uppercase tracking-widest group-focus-within/input:text-[#CC785C] transition-colors">
                                 Email Address
                             </label>
                             <input
+                                id="checkout-email"
                                 type="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -143,6 +144,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ selectedPlan = 'pro'
 
                         {/* Submit Button */}
                         <button
+                            id="checkout-submit"
                             type="submit"
                             disabled={isProcessing}
                             className="w-full py-4 bg-[#CC785C] hover:bg-[#B8694D] text-white font-bold rounded-xl

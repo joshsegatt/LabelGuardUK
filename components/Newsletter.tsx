@@ -8,7 +8,6 @@ export const Newsletter: React.FC = () => {
         e.preventDefault();
         if (!email) return;
 
-        console.log('Newsletter signup:', email);
         localStorage.setItem('newsletter_email', email);
 
         setIsSubmitted(true);

@@ -93,7 +93,6 @@ export function activateProPlan(): void {
     saveLicense(license);
 
     // Clear any usage limits if needed, or let them reset naturally
-    console.log('🌟 Pro Plan Activated:', license.key);
 }
 
 /**

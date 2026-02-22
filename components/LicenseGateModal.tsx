@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { XIcon } from './icons/XIcon';
 import { KeyIcon } from './icons/KeyIcon';
 import { SparklesIcon } from './icons/SparklesIcon';
@@ -20,14 +21,14 @@ export const LicenseGateModal: React.FC<LicenseGateModalProps> = ({ onClose, onV
             setError('');
         }
     };
-    
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setError('');
         setLicenseKey(e.target.value);
     }
 
     return (
-        <div 
+        <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-[fade-in_0.3s_ease-out]"
             onClick={onClose}
             aria-modal="true"
@@ -85,12 +86,12 @@ export const LicenseGateModal: React.FC<LicenseGateModalProps> = ({ onClose, onV
                         Validate & Print
                     </button>
                 </div>
-                
+
                 <div className="mt-6 text-center">
-                    <a href="#" className="group inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors duration-200">
-                         <SparklesIcon className="w-5 h-5 text-indigo-400 group-hover:scale-110 transition-transform"/>
-                         Don't have a key? <span className="font-semibold text-indigo-400 group-hover:underline">Buy Now</span>
-                    </a>
+                    <Link to="/pricing" className="group inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors duration-200">
+                        <SparklesIcon className="w-5 h-5 text-indigo-400 group-hover:scale-110 transition-transform" />
+                        Don't have a key? <span className="font-semibold text-indigo-400 group-hover:underline">Buy Now</span>
+                    </Link>
                 </div>
             </div>
         </div>
