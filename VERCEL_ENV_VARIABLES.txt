@@ -1,0 +1,1 @@
+VITE_STRIPE_CHECKOUT_URL=https://buy.stripe.com/dRm6oG2Qt74g0Tcfg10VO00

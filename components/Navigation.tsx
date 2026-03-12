@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export const Navigation: React.FC = () => {
     const [isScrolled, setIsScrolled] = useState(false);
-    const location = useLocation();
+    const pathname = usePathname();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -14,7 +15,7 @@ export const Navigation: React.FC = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const isActive = (path: string) => location.pathname === path;
+    const isActive = (path: string) => pathname === path;
 
     return (
         <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
@@ -25,7 +26,7 @@ export const Navigation: React.FC = () => {
             <div className="w-full px-6 md:px-10">
                 <div className="flex items-center justify-between">
                     {/* Logo - Text Only */}
-                    <Link to="/" className="group">
+                    <Link href="/" className="group">
                         <span className="text-xl font-bold text-[#ECECEC] tracking-tight group-hover:text-white transition-colors">
                             LabelGuard UK
                         </span>
@@ -34,7 +35,7 @@ export const Navigation: React.FC = () => {
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center gap-8">
                         <Link
-                            to="/"
+                            href="/"
                             className={`text-sm font-medium transition-colors ${isActive('/')
                                 ? 'text-white'
                                 : 'text-[#A8A8A8] hover:text-white'
@@ -43,7 +44,16 @@ export const Navigation: React.FC = () => {
                             Home
                         </Link>
                         <Link
-                            to="/pricing"
+                            href="/docs"
+                            className={`text-sm font-medium transition-colors ${isActive('/docs')
+                                ? 'text-white'
+                                : 'text-[#A8A8A8] hover:text-white'
+                                }`}
+                        >
+                            Documentation
+                        </Link>
+                        <Link
+                            href="/pricing"
                             className={`text-sm font-medium transition-colors ${isActive('/pricing')
                                 ? 'text-white'
                                 : 'text-[#A8A8A8] hover:text-white'
@@ -52,9 +62,9 @@ export const Navigation: React.FC = () => {
                             Pricing
                         </Link>
                         <Link
-                            to="/app"
-                            className="px-5 py-2 bg-[#CC785C] text-white text-sm font-semibold rounded-lg
-                                     hover:bg-[#B8694D] transition-all duration-200 shadow-lg shadow-[#CC785C]/20
+                            href="/dashboard"
+                            className="px-5 py-2 bg-primary text-white text-sm font-semibold rounded-lg
+                                     hover:bg-primary/90 transition-all duration-200 shadow-lg shadow-primary/20
                                      transform hover:-translate-y-0.5"
                         >
                             Get Started
