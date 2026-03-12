@@ -19,7 +19,8 @@ export default function LoginPage() {
                     Welcome back
                 </h2>
                 <p className="text-center text-sm text-muted-foreground">
-                    Sign in to access your saved labels and templates.
+                    Please enter your details to access your business&apos;s food labels.
+ and templates.
                 </p>
             </div>
 
@@ -53,7 +54,7 @@ export default function LoginPage() {
                     </form>
 
                     <div className="mt-6 text-center text-sm text-muted-foreground">
-                        Don't have an account?{' '}
+                        Don&apos;t have an account?{' '}
                         <Link href="/dashboard" className="font-semibold text-primary hover:text-primary/80 transition-colors">
                             Start for free
                         </Link>

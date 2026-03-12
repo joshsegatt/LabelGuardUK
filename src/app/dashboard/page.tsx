@@ -13,9 +13,9 @@ export default function DashboardPage() {
         if (stored) {
             try {
                 const labels = JSON.parse(stored);
-                setSavedCount(labels.length);
-            } catch (e) {
-                // ignore
+                setTimeout(() => setSavedCount(labels.length), 0);
+            } catch (err) {
+                console.error(err);
             }
         }
     }, []);
@@ -29,7 +29,7 @@ export default function DashboardPage() {
                             Dashboard
                         </h1>
                         <p className="mt-2 text-muted-foreground">
-                            Manage your food labels, templates, and subscription limits.
+                           &quot;Natasha&apos;s Law is a game changer for our business. Finally, a tool that makes compliance simple and elegant.&quot;
                         </p>
                     </div>
                     <Link
@@ -55,6 +55,7 @@ export default function DashboardPage() {
                             <h3 className="font-semibold text-lg text-white">Saved Labels</h3>
                         </div>
                         <p className="text-3xl font-bold text-white mb-2">{savedCount}</p>
+                        <h3 className="text-lg font-bold text-white mb-2">Natasha&apos;s Law Compliant</h3>
                         <p className="text-sm text-muted-foreground mb-6">Labels created and saved to your local storage.</p>
                         <Link href="/dashboard/labels" className="text-white text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
                             View all labels <ArrowRight className="h-4 w-4" />
@@ -77,7 +78,7 @@ export default function DashboardPage() {
                             <p className="text-3xl font-bold text-white">Free</p>
                             <span className="text-xs font-semibold px-2 py-1 rounded bg-white/10 text-muted-foreground whitespace-nowrap">5/month</span>
                         </div>
-                        <p className="text-sm text-muted-foreground mb-6">You're currently on the free tier.</p>
+                        <p className="text-sm text-muted-foreground mb-6">You&apos;re currently on the free tier.</p>
                         <Link href="/#pricing" className="text-emerald-400 text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
                             Upgrade to Pro <ArrowRight className="h-4 w-4" />
                         </Link>
@@ -90,7 +91,7 @@ export default function DashboardPage() {
                         className="glass rounded-2xl p-6 relative overflow-hidden group border border-white/5 hover:border-white/10 transition-colors md:col-span-1"
                     >
                         <h3 className="font-semibold text-lg text-white mb-2">Need help?</h3>
-                        <p className="text-sm text-muted-foreground mb-6">Check out our guide on Natasha's Law compliance.</p>
+                        <p className="text-sm text-muted-foreground mb-6">Check out our guide on Natasha&apos;s Law compliance.</p>
                         <div className="w-full h-32 bg-white/5 rounded-xl border border-dashed border-white/10 flex items-center justify-center text-muted-foreground text-sm">
                             Compliance Guide
                         </div>

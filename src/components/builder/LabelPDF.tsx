@@ -1,4 +1,4 @@
-import { Document, Page, Text, View, StyleSheet, Font, Image } from '@react-pdf/renderer';
+import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
 import { LabelData } from '@/lib/store/useLabelStore';
 
 // Use standard PDF fonts to avoid fontkit resolution issues with external woff2 files
@@ -93,8 +93,10 @@ export const LabelPDF = ({ data }: { data: LabelData }) => {
   
   // Logic to split ingredients into parts to bold allergens
   const renderIngredients = () => {
-    let parts = [ingredientsString];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let parts: any[] = [ingredientsString];
     data.allergens.forEach(allergen => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const newParts: any[] = [];
       parts.forEach(part => {
         if (typeof part === 'string') {

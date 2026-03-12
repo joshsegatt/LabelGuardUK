@@ -17,7 +17,7 @@ export async function POST(req: Request) {
             status: 200,
             headers: { 'Content-Type': 'application/json' },
         });
-    } catch (error) {
-        return new NextResponse(JSON.stringify({ error: "Export failed" }), { status: 500 });
+    } catch {
+        return NextResponse.json({ error: 'Failed to export PDF' }, { status: 500 });
     }
 }

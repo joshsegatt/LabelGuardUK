@@ -1,0 +1,16 @@
+
+> temp-app@0.1.0 lint
+> eslint
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+
+C:\Users\josh\Desktop\Projetos\Labelguarduk\src\components\builder\StepPreview.tsx
+  10:15  warning  'LabelData' is defined but never used  @typescript-eslint/no-unused-vars
+  34:26  warning  'e' is defined but never used          @typescript-eslint/no-unused-vars
+
+C:\Users\josh\Desktop\Projetos\Labelguarduk\src\components\marketing\LabelPreview3D.tsx
+  4:10  warning  'useEffect' is defined but never used  @typescript-eslint/no-unused-vars
+  4:21  warning  'useRef' is defined but never used     @typescript-eslint/no-unused-vars
+
+Ô£û 4 problems (0 errors, 4 warnings)
+

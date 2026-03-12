@@ -3,10 +3,10 @@
 import { useState } from 'react';
 import { useLabelStore } from '@/lib/store/useLabelStore';
 import { Plus, X, GripVertical } from 'lucide-react';
-import { motion, Reorder } from 'framer-motion';
+import { Reorder } from 'framer-motion';
 
 export const StepIngredients = () => {
-    const { currentLabel, addIngredient, removeIngredient, updateIngredient, reorderIngredients, setLabelData } = useLabelStore();
+    const { currentLabel, addIngredient, removeIngredient, updateIngredient, setLabelData } = useLabelStore();
     const [newIngredient, setNewIngredient] = useState('');
 
     const handleAdd = () => {

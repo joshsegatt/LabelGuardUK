@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 export const LabelPreview3D = () => {
     const x = useMotionValue(0);

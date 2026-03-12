@@ -2,7 +2,7 @@
 
 import { motion, useMotionTemplate, useMotionValue } from 'framer-motion';
 import { MouseEvent } from 'react';
-import { FileText, ShieldAlert, Barcode, LayoutTemplate, Zap, Download } from 'lucide-react';
+import { ShieldAlert, Barcode, LayoutTemplate, Zap } from 'lucide-react';
 
 const features = [
     {
@@ -132,8 +132,6 @@ const features = [
                             <div>
                                 <div className="text-[5px] text-black/50 uppercase tracking-widest mb-1">— Fresh Deli —</div>
                                 <div className="text-[9px] font-serif font-bold text-black leading-tight">POTATO<br />SALAD</div>
-                            </div>
-                            <div className="space-y-1">
                                 <div className="text-[4px] font-bold text-red-600 bg-red-50 inline-block px-1 py-0.5 rounded-sm">USE BY: 24 OCT</div>
                                 <div className="text-[3.5px] text-black/60 leading-tight">Potatoes, Mayo (EGG), Chives, Onion.</div>
                             </div>
@@ -150,12 +148,12 @@ const features = [
     }
 ];
 
-function BentoCard({ feature, i }: { feature: any, i: number }) {
+function BentoCard({ feature, i }: { feature: { title: string; description: string; icon: React.ElementType; className: string; visual: React.ReactNode; }, i: number }) {
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
 
     function handleMouseMove({ currentTarget, clientX, clientY }: MouseEvent) {
-        let { left, top } = currentTarget.getBoundingClientRect();
+        const { left, top } = currentTarget.getBoundingClientRect();
         mouseX.set(clientX - left);
         mouseY.set(clientY - top);
     }

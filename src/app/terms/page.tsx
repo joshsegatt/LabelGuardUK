@@ -31,7 +31,7 @@ export default function TermsPage() {
                             Platform Usage
                         </h2>
                         <p className="text-white/50 leading-relaxed">
-                            LabelGuardUK provides tools for generating food compliance labels. While we strive for 100% accuracy in our automation and Natasha's Law highlighting, final compliance verification remains the responsibility of the food business operator.
+                            LabelGuardUK provides tools for generating food compliance labels. While we strive for 100% accuracy in our automation and Natasha&apos;s Law highlighting, final compliance verification remains the responsibility of the food business operator.
                         </p>
                     </section>
 

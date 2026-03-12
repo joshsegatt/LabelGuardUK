@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import dynamic from 'next/dynamic';
 
 import LabelPDF from '@/components/builder/LabelPDF';
+import { LabelData } from '@/lib/store/useLabelStore';
 
 const PDFDownloadLink = dynamic(
     () => import('@react-pdf/renderer').then((mod) => mod.PDFDownloadLink),
@@ -14,13 +15,14 @@ const PDFDownloadLink = dynamic(
 );
 
 export default function LabelsListPage() {
-    const [labels, setLabels] = useState<any[]>([]);
+    const [labels, setLabels] = useState<LabelData[]>([]);
 
     useEffect(() => {
         const stored = localStorage.getItem('labelguard_labels');
         if (stored) {
             try {
-                setLabels(JSON.parse(stored));
+                const parsed = JSON.parse(stored);
+                setTimeout(() => setLabels(parsed), 0);
             } catch (e) {
                 console.error("Failed to parse labels", e);
             }
@@ -46,7 +48,7 @@ export default function LabelsListPage() {
                                 Your <span className="text-white/30">Labels</span>
                             </h1>
                             <p className="text-white/50 font-medium">
-                                Manage and download your saved Natasha's Law compliant labels.
+                                Manage and download your saved Natasha&apos;s Law compliant labels.
                             </p>
                         </div>
                         <Link
@@ -75,8 +77,8 @@ export default function LabelsListPage() {
                                         <div className="p-3 bg-white/5 rounded-2xl group-hover:bg-primary/10 group-hover:text-primary transition-colors">
                                             <ShoppingBag className="h-6 w-6" />
                                         </div>
-                                        <button 
-                                            onClick={() => deleteLabel(label.id)}
+                                        <button
+                                            onClick={() => label.id && deleteLabel(label.id)}
                                             className="p-2 text-white/40 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all"
                                         >
                                             <Trash2 className="h-4 w-4" />
@@ -89,7 +91,7 @@ export default function LabelsListPage() {
                                     <div className="space-y-3 mb-8 pt-4 border-t border-white/5">
                                         <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/30">
                                             <Calendar className="w-3 h-3" />
-                                            {new Date(label.createdAt).toLocaleDateString()}
+                                            {label.createdAt ? new Date(label.createdAt).toLocaleDateString() : 'No date'}
                                         </div>
                                         <div className="flex flex-wrap gap-2">
                                             {label.allergens.slice(0, 2).map((a: string) => (
@@ -105,6 +107,7 @@ export default function LabelsListPage() {
 
                                     <div className="mt-auto pt-4">
                                         <PDFDownloadLink
+                                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
                                             document={<LabelPDF data={label} /> as any}
                                             fileName={`${label.productName}.pdf`}
                                             className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 text-white text-sm font-bold transition-all group-hover:bg-white group-hover:text-black"
@@ -122,9 +125,9 @@ export default function LabelsListPage() {
                         <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white/5 mb-8">
                             <ShoppingBag className="w-10 h-10 text-white/20" />
                         </div>
-                        <h2 className="text-2xl font-black text-white mb-4 italic uppercase tracking-tighter">No labels found</h2>
+                        <h1 className="text-4xl font-black text-white tracking-tighter">Your Label Designs</h1>
                         <p className="text-white/40 max-w-sm mx-auto mb-10 font-medium">
-                            You haven't generated any food labels yet. Start building your first compliant label in seconds.
+                            You haven&apos;t generated any food labels yet. Start building your first compliant label in seconds.
                         </p>
                         <Link
                             href="/dashboard/labels/new"

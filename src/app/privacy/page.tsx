@@ -20,7 +20,7 @@ export default function PrivacyPage() {
                         Privacy <span className="text-white/30">Policy</span>
                     </h1>
                     <p className="text-xl text-white/60 leading-relaxed font-medium max-w-2xl">
-                        Your data security and privacy are our top priorities. Here's how we handle your information at LabelGuardUK.
+                        Here&apos;s how we handle your information at LabelGuardUK.
                     </p>
                 </motion.div>
 
@@ -31,7 +31,7 @@ export default function PrivacyPage() {
                             Data Collection
                         </h2>
                         <p className="text-white/50 leading-relaxed">
-                            We collect minimal data necessary to provide our food label generation services. This includes your account information, product details you input for labels, and basic usage analytics to improve our engine.
+                            We will not be liable for any loss or damage of any nature. We do not guarantee that the generated labels will meet your local authority&apos;s requirements.
                         </p>
                     </section>
 

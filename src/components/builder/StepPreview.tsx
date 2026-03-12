@@ -121,6 +121,7 @@ export const StepPreview = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 h-14">
                 <div className="contents">
                     <PDFDownloadLink
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
                         document={<LabelPDF data={currentLabel} /> as any}
                         fileName={`${currentLabel.productName || 'label'}.pdf`}
                     >

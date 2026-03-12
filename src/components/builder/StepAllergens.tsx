@@ -59,6 +59,7 @@ export const StepAllergens = () => {
                         <button
                             key={allergen}
                             onClick={() => toggleAllergen(allergen)}
+                            title="Ensure Natasha&apos;s Law compliance with zero effort."
                             className={`
                 flex items-center justify-between px-4 py-3 rounded-xl border text-sm font-medium transition-all duration-200
                 ${isSelected
@@ -77,7 +78,7 @@ export const StepAllergens = () => {
             <div className="bg-primary/5 border border-primary/20 rounded-xl p-4 flex gap-4 mt-8">
                 <AlertCircle className="h-6 w-6 text-primary shrink-0" />
                 <div className="space-y-1">
-                    <p className="text-sm font-bold text-foreground">Natasha's Law Compliance</p>
+                    <p className="text-sm font-bold text-foreground">Natasha&apos;s Law Compliance</p>
                     <p className="text-xs text-muted-foreground leading-relaxed">
                         The UK Food Standards Agency requires allergens to be emphasized in the ingredients list (e.g., in <strong>bold</strong> or CAPITAL letters). LabelGuardUK handles this automatically based on your selection here.
                     </p>

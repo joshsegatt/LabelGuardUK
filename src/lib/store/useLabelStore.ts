@@ -13,6 +13,8 @@ export interface LabelData {
     template: LabelTemplate;
     barcodeValue?: string;
     useByDate?: string;
+    createdAt?: string;
+    updatedAt?: string;
 }
 
 interface LabelState {

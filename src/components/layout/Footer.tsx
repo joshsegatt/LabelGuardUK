@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ShieldCheck, Mail, Twitter, Github, Linkedin } from 'lucide-react';
+import { ShieldCheck } from 'lucide-react';
 
 export function Footer() {
     return (

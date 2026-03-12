@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, CheckCircle2, ShieldAlert } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ShieldAlert } from 'lucide-react';
 import Link from 'next/link';
 
 export const Hero = () => {
@@ -33,7 +33,7 @@ export const Hero = () => {
                         transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
                         className="mt-6 text-base sm:text-lg md:text-xl tracking-tight text-white/70 leading-relaxed max-w-lg"
                     >
-                        The ultimate UK food label generator designed for modern vendors. Ensure Natasha's Law compliance with zero effort using our real-time 3D builder and high-res PDF engine.
+                        The ultimate UK food label generator designed for modern vendors. Ensure Natasha&apos;s Law compliance with zero effort using our real-time 3D builder and high-res PDF engine.
                     </motion.p>
 
                     <motion.div

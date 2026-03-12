@@ -1,7 +1,6 @@
 'use client';
 
 import { useLabelStore, LabelTemplate } from '@/lib/store/useLabelStore';
-import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
 
 const templates: { id: LabelTemplate; name: string; description: string; colors: string }[] = [

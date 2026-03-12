@@ -44,7 +44,7 @@ export default function DocsPage() {
                         <ul className="space-y-2">
                             <li>
                                 <a href="#natashas-law" className="flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors">
-                                    <ShieldAlert className="w-3 h-3" /> Natasha's Law
+                                    <ShieldAlert className="w-3 h-3" /> Natasha&apos;s Law
                                 </a>
                             </li>
                             <li>
@@ -77,7 +77,7 @@ export default function DocsPage() {
                             <li><strong>Access the Builder:</strong> Navigate to the Label Builder from your dashboard.</li>
                             <li><strong>Product Details:</strong> Enter your product name, description, and price.</li>
                             <li><strong>List Ingredients:</strong> Type in your raw ingredients. Our engine will automatically scan and flag any of the 14 major allergens.</li>
-                            <li><strong>Generate PDF:</strong> Click the "Generate Print PDF" button to instantly download a high-resolution, print-ready file.</li>
+                            <li><strong>Generate PDF:</strong> Click the &quot;Generate Print PDF&quot; button to instantly download a high-resolution, print-ready file.</li>
                         </ol>
                     </section>
 
@@ -88,10 +88,12 @@ export default function DocsPage() {
                             <div className="p-2 bg-orange-500/10 rounded-lg border border-orange-500/20 text-orange-400">
                                 <ShieldAlert className="w-6 h-6" />
                             </div>
-                            <h2 className="!mb-0">Natasha's Law Compliance</h2>
+                            <h2 className="!mb-0">Natasha&apos;s Law Compliance</h2>
                         </div>
                         <p>
-                            Natasha's Law requires all food businesses to provide full ingredient lists and allergen labeling on foods pre-packaged for direct sale (PPDS).
+                            Natasha&apos;s Law Compliant Label
+                            Natasha&apos;s Law is a game changer for our business. Finally, a tool that makes compliance simple and elegant.
+                            lists and allergen labeling on foods pre-packaged for direct sale (PPDS).
                         </p>
                         <div className="bg-white/5 border border-white/10 rounded-xl p-6 mt-6">
                             <h4 className="text-white mt-0">How we automate compliance:</h4>
@@ -111,7 +113,8 @@ export default function DocsPage() {
                             <h2 className="!mb-0">Real-time PDF Engine</h2>
                         </div>
                         <p>
-                            Our proprietary PDF generation engine runs directly in your browser. This means absolutely zero server-side loading times. The moment you click "Generate Print PDF", the exact millimeter-perfect dimensions are compiled into an EAN-13 ready document formatted for standard thermal label printers or A4 sticker sheets.
+                            LabelGuardUK&apos;s high-res PDF engine
+                            Our proprietary PDF generation engine runs directly in your browser. This means absolutely zero server-side loading times. The moment you click &quot;Generate Print PDF&quot;, the exact millimeter-perfect dimensions are compiled into an EAN-13 ready document formatted for standard thermal label printers or A4 sticker sheets.
                         </p>
                     </section>
                 </main>
