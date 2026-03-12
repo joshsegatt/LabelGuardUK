@@ -105,7 +105,7 @@ export default function LabelsListPage() {
 
                                     <div className="mt-auto pt-4">
                                         <PDFDownloadLink
-                                            document={<LabelPDF data={label} />}
+                                            document={<LabelPDF data={label} /> as any}
                                             fileName={`${label.productName}.pdf`}
                                             className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 text-white text-sm font-bold transition-all group-hover:bg-white group-hover:text-black"
                                         >
